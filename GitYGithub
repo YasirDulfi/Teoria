@@ -19,7 +19,6 @@
     git rest --hard codigoDeCaptura
     //como devolver el codigo a una captura anterior
 
--github
 
     iniciando sesion en git
     git config --global user.name "John Doe"
@@ -28,3 +27,40 @@
 
     git remote add origin https://github.com/YJDcoder/NombRepositorio.git
     //añade un archivo al repositorio
+
+    git push 
+    //nos permite añadir a github lo añadido en el repositorio local
+
+    git pull 
+    //nos permite bajar de github las actualizaciones del projecto 
+
+TAG
+    git tag v1.0  -m "version 1.0"
+
+    git push --tags //subo los tags
+
+RAMAS 
+    normalmente se trabaja en la rama main pero a veces es necesario
+    que haya otra rama que permita a otro programador hacer ambios en
+    el projecto si modificar main
+
+    //averiguar que ramas hay y en cual de ellas estamos 
+        git branch
+
+    //crear  rama
+        git branch nombreRama
+
+    //nos movemos a la rama
+        git checkout nombreRama
+
+    //actualizar rama master 
+        para ello primero hay que moverse a la rama master, despues
+        git merge nombreRama
+        PD: en caso de exista conflicto escoge que rama matener
+        
+    //eliminamos rama
+        git branch -d nombreRama
+
+    
+    
+     
