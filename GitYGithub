@@ -1,0 +1,30 @@
+-creando repositorio  
+    git init
+
+    git add .(para seleccionar la carpeta completa) o nombreArchivo 
+    //añade a area de ensayo el archivo
+
+    git commit -m "comentario"
+    //añado la captura de la carpeta al repositorio local 
+
+    PD: se puede utilizar git commit -am nombreArchivo para
+    add y commit juntos
+-comandos generales git
+    git status -git s
+    //ver los estatus de los archivos de la carpeta 
+
+    git log --oneline
+    //como ver todas las capturas que hemos echo en el repositorio local
+
+    git rest --hard codigoDeCaptura
+    //como devolver el codigo a una captura anterior
+
+-github
+
+    iniciando sesion en git
+    git config --global user.name "John Doe"
+    git config --global user.email johndoe@example.com
+
+
+    git remote add origin https://github.com/YJDcoder/NombRepositorio.git
+    //añade un archivo al repositorio

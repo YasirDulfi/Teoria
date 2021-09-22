@@ -1,0 +1,42 @@
+* {
+    padding: 0;
+    margin: 0%;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: steelblue;
+    padding: 20px;
+}
+
+.contenedor {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    background-color: rgb(255, 229, 195);
+    padding: 50px 20px;
+}
+
+#formulario {
+    width: 70%;
+    padding: 20px 10px;
+    display: flex;
+    flex-flow: column nowrap;
+
+}
+
+#formulario * {
+    margin: 5px;
+    height: 40px;
+    border-radius: 7px;
+    border: 2px solid purple;
+    box-shadow:-5px 4px 12px 2px rgba(0,0,0,0.28);
+
+}
+
+
+
+#enviar{
+    height: 30px;
+    width: 100px;
+}

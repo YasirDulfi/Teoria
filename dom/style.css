@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: greenyellow;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+#contenedor {
+    padding: 30px;
+    border: 1px solid grey;
+    margin: 10px;
+    display: flex;
+    flex-flow: row nowrap;
+    
+}
+
+
+/*------------------------------------------*/
+
+
+#add-contenedor{
+    margin-right: 10px;
+}
+
+#contenido {
+    margin: 6px 0px 10px 0px;
+    height: 50px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+#numero-list {
+    padding: 5px;
+    width: 145px;
+    margin-bottom: 10px;
+}
+
+#add {
+    padding: 5px;
+    color: purple;
+    background-color: rgba(102, 51, 153, 0.534);
+    border: 2px solid purple;
+    border-radius: 8px;
+}
+
+/*--------------------------------------------------*/
+
+#items {
+   display: flex;
+   flex-flow: column nowrap;
+   width: 200%;
+}
+
+#items h1 {
+    align-self: center;
+}
+
+#list-group {
+    list-style-type: none;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: stretch;
+    width: 100%;
+}
+
+#list-group-item {
+   
+    margin: 5px;
+    padding: 5px;
+    
+    border: 2px solid grey;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+
+
+#borrar {
+    padding: 5px 10px;
+    background-color: red;
+    border-radius: 8px;
+    border: 1px solid purple;
+
+}
+#circulo {
+    background-color: black;
+    border-radius: 100%;
+    padding: 20px;
+    height: 30px;
+    width: 30px;
+}

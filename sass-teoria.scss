@@ -1,0 +1,130 @@
+/*
+
+crear variable
+    $nomVar: grey;
+    $nomvar2 : size;
+interpolation( transformlo la variable )
+    #{$nomVar}; ---> grey
+    border-#{$nomVar}: 10px;
+
+funciones para variables
+    $varFinal: join($var1, $var2);
+    $varFinal: append($var1, (green, red, blue)); introduzco green red y blue en var1 
+
+
+------------------------------------------------------------------------
+
+crear un array
+    $nomArray: green, red, blue;
+acceder a la lista
+    color: nth($nomVar, NumEnLaLista(1...))
+
+each que es como el for para sass para array
+    @each $var1 in $array {
+        .#{$var1}{
+            background-color: $var1;
+        }
+    }
+
+====================
+crear matriz
+    $nomMatriz: (green, flex) (red, grid) (blue, block);
+
+    each que es como el for para sass
+    @each $var1,  $var2 in $matriz {
+        .#{$var2}{
+            background-color: $var1;
+        }
+    }
+  
+==========================
+Mapas
+    $var1: (
+        h5: 1rem;
+        h4: 10rem;
+        h3: 100rem;
+        h2: .1rem;
+    ); 
+
+Each
+
+funciones para acceder a mapas
+    $definicionVar: map-get($var1, h1); ya puede utilizar definicionVar 
+
+    Alternativa a join -> map-merge($mapa1, $mapa2);
+
+    map-has-key($mapa1, $varX); ->devuelve true o false dependiendo de si varX esta en map
+
+    map-remove($mapa1, $varX) -> elimino varX
+
+
+--------------------------------------------------------------------------------
+Nested css
+    header {
+        backgroung: $nomVar;
+        button {
+            background: $nomVar;
+        }
+    }
+
+Hover o cualquier otra pseudoClase
+    button {
+        background-color: grey;
+        &:hover {
+            backgournd-color: green;
+        }
+    }
+
+Sass modular 
+
+    en style
+    @import './nomModulo';
+
+    en el modulo creado
+    !EL NOMBRE DEL MUDULO DE DEBE EMPEZAR POR  _
+    ----------------------------------------------------- la mejor verison abajo
+    en style 
+    @use './nomModulo' as elNombreQueQuieras;
+
+    body{
+        font-size: elNombreQueQuieras.$nomVar;
+    }
+
+Clases o id modulares 
+    .class1 {
+        background-color: grey;
+    }
+
+    .class2 {
+        display: block;
+        @extend .class1; ---> class2 copia las propiedades de class1 mas las suyas
+    }
+
+
+crear objeto en sass
+
+    declarar el objeto
+    @mixin nomFuncion(var1, var2) {
+        text-align: center;
+        text-color: var1;
+        text-size: var2 px;
+    }
+
+    utilizo el objeto 
+    @include nomFuncion(green, 3);
+
+crear una funcion 
+
+    @function nomVar($nomVar) {
+        @return $nomVar + 10;
+    }
+
+
+condiciones en sass
+
+    @if $var1 > var2{
+    } else {
+    }
+
+Funciones ya predeterminadas
+    

@@ -1,0 +1,203 @@
+----------------------Iniciar un projecto-------------------
+    proceso de instalacion de react
+
+        npx create-react-app nombreCarpeta
+
+
+    visualizar un projecto de react 
+
+        cd nombreCarpeta
+        npm run build
+
+        npm install -g serve
+        serve -s build
+            o
+        npm star
+
+    instalas todas las dependencia necesarias para tu projecto
+
+        npm install
+        que a su vez leera package.json
+
+    installar otras dependencias interesantes
+        css styled components
+        npm install --save styled-components
+        y añades en el componente 
+        import style form 'styled-components';
+
+    Estructura recomendada
+        -node_modules
+        -public
+        -src
+            -components
+                -componente1
+                    +componente1.js
+                    +componente1.css
+                    +subcomponente1.js
+                    +subcomponente1.css
+                -UI
+                    +barra.js
+                    +barra.css
+                    +card.js
+                    +card.css
+
+
+-------------------------JSX-------------------------------------
+
+    guardar html en una variable js
+        let variable = <p>el valor que se guarda</p>;
+
+    acciones para elementos html
+        -onClick  -> cuando se hace click al elemento html
+
+        -onChange -> cuando el el contenido del elemento html cambia 
+
+        -OnSubmit -> se añade a un form para cuando se pulse submit ejecute 
+                    una funcion 
+
+
+-------------------------Array------------------------------------
+-map
+ ex: props.nomAtri.map((valor) => {<nomComponente atributo={valor.nomProp} />)
+    map hace que se envie cada elemento del array al subcomponente
+    nomComponente que a su vez este lo renderiza 
+
+
+--------------------Condicional content-----------------------------
+
+Fuera del return, en una funcion pj
+    const name = (value) => {
+        if(value.length > 0){
+            ......
+        }
+    }
+
+Dentro del return: 
+ex: {array.length === 0 ? <existeValor /> : <noExisteValor />}
+
+
+
+
+--------------------FORMS-------------------------------------------
+    <form onSubmit={funtionname}>
+        <input type='date' value={valorPreD}>
+    </form>
+
+    const funtionname = (event) => {
+        event.preventDefault();
+    }
+
+
+--------------------States-------------------------------------------
+    Incluir la ibreria de useState
+        import React, {useState} from 'react';
+
+
+    Crear la funcion State
+
+        useState('default state value');
+            ex: useState(props.nomAtributo);
+            Sirve para actualizar el valor de una variable llamando a la 
+            funcion state y nos devuelve un array
+
+        const [nombreA, funcionNombre1] = useState(props.nomAtributo);
+            nombreA apunta a useState(....);
+            funcionNombre1 es una ffuncion a la que puedo llamar despues
+            para cambiar el valor de nombreA
+
+            ex def de funcionNombre1:
+            const valueChangeHandler = (evento) => {};
+              
+    Llamar la funcion State
+
+        nombreA 
+
+    Cambiar el valor del state
+
+        funcionNombre1('El argumento que quieres guardar');
+
+        IMPORTANTE!!: al llamar la funcion no solo se guarda el valor en 
+        la variable del state sino que ademas se hace un refresh del 
+        componente algo  asi como si fuese ajax
+
+
+    Multiples useState vs one
+
+        Multiple: inside useState uses strings
+        const [nombre1, functionNombre1] = useState('..string..');
+        const [nombre2, functionNombre2] = useState('..string..');
+        const [nombre3, functionNombre3] = useState('..string..');
+        
+        One: inside useState uses an object
+        const [nombre, functionNombre] = useState({
+            valueNombre1: '',
+            valueNombre2: '',
+            valueNombre3: ''
+        });
+        PD!: However es muy importante en no copiar el valor dentro
+        del objeto sin tambien haber pasado todos sus atributos ya que 
+        sino el objeto se sobreescribe con solo un atributo
+            ex:
+            functionNombre((prevState) => {
+                {...nombre, //copio todos los atributos y sus valores
+                valueNombre1: props.something,}
+            }); 
+            //PD: prevState nos da un screen shot mas seguro que con ...
+
+
+--------------------Enviar informacion de hijo a padre-------------------
+    Estructura
+        app -> ejemploComponente -> componDeComp(devuelve un objeto!)
+    
+    1ero Comunicacion entre componDeComp(H) y ejemploComponente(P)
+        <componDeComp nombrePropiedad={functionComunicar}/> 
+                    //se envia al hijo el puntero de la funcion del padre.
+                    lo que se busca es que la prop que se envie a 
+                    componDeComp sea el intermediaria entre H a Padre.
+
+    2ndo Configuramos al hijo         
+        props.nombrePropiedad(valores); //se ejecuta la funcion del padre
+                                    //y se envia lo que queramos comunicar
+
+
+-------------------------Dinamic Component Styling-----------------------
+    InLine Style: este contiene un objeto con todas las propiedades
+    ex: <label style={{}} ></label>
+
+    With name.css:
+    en la etiqueta html configuras el className para que se adapte a ...
+    ex: <div className=`cuadrado ${Condicional}`></div>
+
+    With SYLED COMPONENTS :
+    PD: puede ser button, input, p, h1... y nos desvuelve lo que select
+    ex: const Button = styled.button`aqui entran las prop de css y ${var}`;
+        return (<Button 
+                    atributo = true //se puede leer atributo inside ``
+                    className={!condicion ? something : else} 
+                    />);
+
+    style componente de react se hace en vez de styled.componente
+    se hace con styled(componente)``;
+
+    Ex:
+    const Button = styled.button(
+        ({ primary, round, shadow }) => `
+            background: ${primary ? "#6495ED" : "#2b2b2b"};
+            border-radius: ${round ? "4px" : "0"};
+            box-shadow: ${shadow ? "2px 2px 2px rgba(0, 0, 0, 0.5)" : "none"};
+            color: white;
+            font-size: 24px;
+            padding: 12px;
+            cursor: pointer;
+        `
+    );
+
+
+    Css Modular 
+    1ero creas cualquierName.module.css
+    2ndo introducimos el modulo en el componente
+        import cualquierName from './cualquierName.module.css';
+
+    3ero poner estilos a etiquetas 
+        <div className=`${cualquierName['nomEstilo']}`></div>
+

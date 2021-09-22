@@ -1,0 +1,40 @@
+* {
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+
+body {
+    padding: 10px;
+}
+
+.contenedor-general {
+ background-color: steelblue;
+}
+
+#tabla-u {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.indice {
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 15px;
+}
+.indice * {
+    margin: 5px 15px;
+    padding: 10px;
+}
+
+#tabla-li {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+
+#tabla-li * {
+    padding: 15px;
+    margin: 5px 15px;
+}

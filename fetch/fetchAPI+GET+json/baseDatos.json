@@ -1,0 +1,44 @@
+[
+    {
+        "id" : 1,
+        "nombre" : "Harry",
+        "email" : "harry@api.com",
+        "estado" : true
+    },
+
+    {
+        "id" : 2,
+        "nombre" : "Harry2",
+        "email" : "harry2@api.com",
+        "estado" : false
+    },
+
+    {
+        "id" : 3,
+        "nombre" : "Harry3",
+        "email" : "harry3@api.com",
+        "estado" : true
+    },
+
+    {
+        "id" : 4,
+        "nombre" : "Harry4",
+        "email" : "harry4@api.com",
+        "estado" : false
+    },
+
+    {
+        "id" : 5,
+        "nombre" : "Harry5",
+        "email" : "harry5@api.com",
+        "estado" : true
+    },
+    {
+        "id" : 6,
+        "nombre" : "Harry6",
+        "email" : "harry6@api.com",
+        "estado" : true
+    }
+
+
+]
