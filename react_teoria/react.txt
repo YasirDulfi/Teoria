@@ -48,12 +48,18 @@
         let variable = <p>el valor que se guarda</p>;
 
     acciones para elementos html
-        -onClick  -> cuando se hace click al elemento html
+        -onClick    -> cuando se hace click al elemento html
 
-        -onChange -> cuando el el contenido del elemento html cambia 
+        -onChange   -> cuando el el contenido del elemento html cambia 
 
-        -OnSubmit -> se añade a un form para cuando se pulse submit ejecute 
-                    una funcion 
+        -OnSubmit   -> se añade a un form para cuando se pulse 
+                       submit ejecute una funcion 
+
+        -onConfirm  ->
+
+        -onLogin    ->
+
+        -onLogout   ->
 
 
 -------------------------Array------------------------------------
@@ -86,6 +92,135 @@ ex: {array.length === 0 ? <existeValor /> : <noExisteValor />}
     const funtionname = (event) => {
         event.preventDefault();
     }
+
+
+--------------------Enviar informacion de hijo a padre-------------------
+    Estructura
+        app -> ejemploComponente -> componDeComp(devuelve un objeto!)
+    
+    1ero Comunicacion entre componDeComp(H) y ejemploComponente(P)
+        <componDeComp nombrePropiedad={functionComunicar}/> 
+                    //se envia al hijo el puntero de la funcion del padre.
+                    lo que se busca es que la prop que se envie a 
+                    componDeComp sea el intermediaria entre H a Padre.
+
+    2ndo Configuramos al hijo         
+        props.nombrePropiedad(valores); //se ejecuta la funcion del padre
+                                    //y se envia lo que queramos comunicar
+
+
+-------------------------Dinamic Component Styling-----------------------
+    InLine Style: este contiene un objeto con todas las propiedades
+    ex: <label style={{}} ></label>
+
+    With name.css:
+    en la etiqueta html configuras el className para que se adapte a ...
+    ex: <div className=`cuadrado ${Condicional}`></div>
+
+    With SYLED COMPONENTS :
+    PD: puede ser button, input, p, h1... y nos desvuelve lo que select
+    ex: const Button = styled.button`aqui entran las prop de css y ${var}`;
+        return (<Button 
+                    atributo = true //se puede leer atributo inside ``
+                    className={!condicion ? something : else} 
+                    />);
+
+    style componente de react se hace en vez de styled.componente
+    se hace con styled(componente)``;
+
+    Ex:
+    const Button = styled.button(
+        ({ primary, round, shadow }) => `
+            background: ${primary ? "#6495ED" : "#2b2b2b"};
+            border-radius: ${round ? "4px" : "0"};
+            box-shadow: ${shadow ? "2px 2px 2px rgba(0, 0, 0, 0.5)" : "none"};
+            color: white;
+            font-size: 24px;
+            padding: 12px;
+            cursor: pointer;
+        `
+    );
+
+
+    Css Modular 
+    1ero creas cualquierName.module.css
+    2ndo introducimos el modulo en el componente
+        import cualquierName from './cualquierName.module.css';
+
+    3ero poner estilos a etiquetas 
+        <div className=`${cualquierName['nomEstilo']}`></div>
+
+
+
+
+--------------------wrapping component--------------------------
+    Existen dos manera para que no se repitan tandos divs
+
+    1.creamos un componente llamado wrapper con
+        const Wrapper = props => {
+            return props.children;
+        }
+        export default Wrapper;
+
+    Y en los documentos envez de utilizar div para wrap utilizammos este
+    nuevo componente
+
+    2.utilizamos <React.Fragment> para wrap
+
+
+----------------------------Portals-----------------------------
+    Nos sive para que un elemento al ser renderizado en vez de situarse
+    en la cadena x del arbol se situe en una  posicion del arbol que 
+    nosotros determinamos
+
+    1ero añadimos un div en index.html 
+    <div id="backdrop-root" ></div>
+    <div id="modalOverlay-root"></div>
+
+
+    2ndo en el modal(componente) que quieras teletransportar creas
+
+    const Backdrop = (prop) => {
+        return <div className={classes.backdrop} onClick={props.onConfirm} />
+    }
+    const ModalOverlay = (props) => {
+        return(
+            lo que quieras mostrar.......
+        );
+    }
+    const NombreComponente = (props) => {
+        return(
+            <React.Fragment>
+            {ReactDOM.createPortal(
+                <Backdrop onConfirm={props.onConfirm} />,
+                document.getElementById('backdrop-root');
+                )
+            }
+            {ReactDOM.createPortal(
+                <ModalOverlay  
+                    onConfirm={props.onConfirm}
+                    ........... 
+                />,
+                document.getElementById('modalOverlay-root');
+                )
+            }
+            </React.Fragment>
+        );
+    }
+
+-------------------------------HOOKS----------------------------------
+
+----------------------------References--------------------------------
+    Nos permite tener acceso al elemento html y a su contenido sin 
+    necesidad de document.getElementById('..');
+    llamo la funcion:
+        const nameRef = useRef();
+
+    conecto la constante con el elemento al cual queiro que referencie
+        <input ref={nameRef}
+
+
+
 
 
 --------------------States-------------------------------------------
@@ -145,59 +280,121 @@ ex: {array.length === 0 ? <existeValor /> : <noExisteValor />}
             //PD: prevState nos da un screen shot mas seguro que con ...
 
 
---------------------Enviar informacion de hijo a padre-------------------
-    Estructura
-        app -> ejemploComponente -> componDeComp(devuelve un objeto!)
+
+-------------------------------UseReducer()----------------------------
+    useReducer es un Hook que nos permite manipular el state de nuestros 
+    componentes funcionales, esto se logra a través de:
+
     
-    1ero Comunicacion entre componDeComp(H) y ejemploComponente(P)
-        <componDeComp nombrePropiedad={functionComunicar}/> 
-                    //se envia al hijo el puntero de la funcion del padre.
-                    lo que se busca es que la prop que se envie a 
-                    componDeComp sea el intermediaria entre H a Padre.
+    -Y un función de retorno llamada dispatch con la cual podemos combinar o 
+    emparejar el state.
 
-    2ndo Configuramos al hijo         
-        props.nombrePropiedad(valores); //se ejecuta la funcion del padre
-                                    //y se envia lo que queramos comunicar
+    const [state, dispatch] = useReducer(reducer, initialState, init);
 
+    //Estado inicial
+        const initialState = {
+        count:0,
+        countInterval:1,
+        increment:true
+        }
 
--------------------------Dinamic Component Styling-----------------------
-    InLine Style: este contiene un objeto con todas las propiedades
-    ex: <label style={{}} ></label>
+    //Una función reducer(calculan el nuevo estado en base al anterior 
+    estado y la acción)
 
-    With name.css:
-    en la etiqueta html configuras el className para que se adapte a ...
-    ex: <div className=`cuadrado ${Condicional}`></div>
+    const reducer = (state, action)=>{
+    switch (action.type) {
+        case "INCREMENT":
+        return{
+            ...state,
+            increment: action.increment
+        }
+         default:
+            //Lanzar un error
+            return state;
+        }
+    }
 
-    With SYLED COMPONENTS :
-    PD: puede ser button, input, p, h1... y nos desvuelve lo que select
-    ex: const Button = styled.button`aqui entran las prop de css y ${var}`;
-        return (<Button 
-                    atributo = true //se puede leer atributo inside ``
-                    className={!condicion ? something : else} 
-                    />);
+    //una funcion dispatch(determina que accion realiza el reducer, se
+    puede hacer de manera asincrona)
+    PD: se pune dentro del la funcion proncipal del componente
 
-    style componente de react se hace en vez de styled.componente
-    se hace con styled(componente)``;
-
-    Ex:
-    const Button = styled.button(
-        ({ primary, round, shadow }) => `
-            background: ${primary ? "#6495ED" : "#2b2b2b"};
-            border-radius: ${round ? "4px" : "0"};
-            box-shadow: ${shadow ? "2px 2px 2px rgba(0, 0, 0, 0.5)" : "none"};
-            color: white;
-            font-size: 24px;
-            padding: 12px;
-            cursor: pointer;
-        `
-    );
+    const handleIncrement = (e)=>{
+        e.preventDefault();
+        const {checked}=e.target;
+        dispatch({Accion que se quiera hacer, atributo a evaluar});
+    }
 
 
-    Css Modular 
-    1ero creas cualquierName.module.css
-    2ndo introducimos el modulo en el componente
-        import cualquierName from './cualquierName.module.css';
 
-    3ero poner estilos a etiquetas 
-        <div className=`${cualquierName['nomEstilo']}`></div>
 
+----------------------------useEffect----------------------
+    Handling Side Effects: Cada vez que que el estado de la dependecia 
+    cambie se ejecuta la func se ejecuta despues de que todo el 
+    componente se haya ejecutado
+
+    -useEffect(() => {.......}, [condiciones dependencias]);
+
+    -Pd revisar useEffect con useReducer video n 117
+
+    useEffect(() => {
+    // code that only uses someProperty ...
+    }, [someObject.someProperty]);
+
+
+
+---------------------------Context API---------------------------
+    Context API es una manera de comunicar componentes hijos o nietos con
+    componenstes tios o primos de tal manera que si fuesemos a 
+    comunicarlos los comunicamos d otra manera
+
+    1ero creamos un documento llamado nomComponente-context.js
+
+    import React from 'react';
+
+    const nomComponenteContext = React.createContext({
+        atributo1: undefined,
+        atributo2: undefined,
+        nomFuncion: () => {}
+    });    
+
+    export default AuthContext;
+
+    2ndo 
+    lo importamos al componente donde se generan esos atributos 
+    y wrappeamos el nomComponenteContext metiendo dentro las etiquetas
+    que generan los props que necesiten 
+
+    <nomComponenteContext.Consumer>
+        {(ctx) => { //creamos un objeto que tiene una funcion que a su vez
+            return( // return el lo que haya que return pero sync el 
+                    //atributo con el atributo del componente actualizando 
+                    //su valor si es necesario
+                <generoProps ctx.atributo1 />
+
+            );
+         }
+        }
+    </nomComponenteContext.Consumer>
+    
+    
+    lo importamos al componente donde se necesitan esos atributos 
+    y wrappeamos el nomComponenteContext metiendo dentro las etiquetas
+    que requieran los props que necesiten 
+
+    <nomComponenteContext.Provider>
+        <necesitoProps />
+    </nomComponenteContext.Provider>
+
+
+    -useContext:
+        desde el generador:
+
+        const nomComponente = (props) => {
+            const ctx = useContext(nomComponenteContext);
+            //apunta al objeto de contextos
+             return( 
+
+                <generoProps ctx.atributo1 />
+
+            );
+        }
