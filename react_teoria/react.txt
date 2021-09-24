@@ -477,6 +477,20 @@ de que sus dependecias cambien
         }
 
 
+Forms
+    Validation:
+    La validacion de los forms se puede hacer en tres areas:
+
+    1era Cuando el formulario es enviado
+    2nda Cuando el cliente ya ha escrito en el form pero todavia no 
+         ha pulsado submit
+    3era se puede validar por cada keystroke
+
+    //acceder al valor de un input
+        <input 
+            ref={nombreReferencia}
+
+
 
 --------------------------Creating a custome hook------------------------
 
