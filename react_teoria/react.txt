@@ -80,7 +80,9 @@ Fuera del return, en una funcion pj
 
 Dentro del return: 
 ex: {array.length === 0 ? <existeValor /> : <noExisteValor />}
+                          correcto          incorrecto
 
+ex: {var && funcion() === 1 && <p>si var isset y funcion =1 se muestra p>}
 
 
 
@@ -403,3 +405,89 @@ ex: {array.length === 0 ? <existeValor /> : <noExisteValor />}
 --------------------------useImperativeHandler--------------------------
 
 pd: React.forwardRef
+
+
+--------------------------------useCallback-----------------------------
+sirve para almacenar una funcion en el hook y cambiar su estado en caso 
+de que sus dependecias cambien
+    const callback = useCallback( () => {} ,[dependecia1, dependencia2]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------https request y forms---------------------------
+
+    //comunicar con una base de datos 
+    //PD: GET request
+        try{
+            async fetch('URL'
+                await .then((respuesta) => {
+                return respuesta.json(); //json() es un metodo que transforma a json
+                })
+                .then((datosTransformados) => {
+                    acciones que se quira tomar con la info...
+                })
+                
+                ,
+                {objeto que quieras enviar}
+            )
+                if(respuesta.status === 404) {
+                    //PD se puede utilizar respuesta.ok
+                    throw new Error('este es el error mostrado');
+                }
+        } catch(error){
+            ..............
+        }
+
+    //PD: POST request
+        try{
+            async fetch('URL'
+                await .then((respuesta) => {
+                return respuesta.json(); //json() transform to a json
+                })
+                .then((datosTransformados) => {
+                    acciones que se quira tomar con la info...
+                })
+                
+                ,
+                {
+                    method: 'POST',
+                    body: JSON.stringify('lo quieras enviar'),
+                    header: {
+                        'Content-type': 'application/json',
+                        'Charset': 'UTF-8'
+                    }    
+                }
+            )
+                if(respuesta.status === 404) {
+                    //PD se puede utilizar respuesta.ok
+                    throw new Error('este es el error mostrado');
+                }
+        } catch(error){
+            ..............
+        }
+
+
+
+--------------------------Creating a custome hook------------------------
+
+    1ero creamos una carpuea en src que se llame HOOKS
+    2do creamos un nomComp.js
+
+        const useNomCustomHook = () => {
+            //pd use es obligatorio si quieres que react lo reconozca
+            //como un hook
+            .....................
+        }
+
+    3ero llamamos el Hook
+        useNomCustomHook();
