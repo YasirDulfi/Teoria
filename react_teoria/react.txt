@@ -86,16 +86,6 @@ ex: {var && funcion() === 1 && <p>si var isset y funcion =1 se muestra p>}
 
 
 
---------------------FORMS-------------------------------------------
-    <form onSubmit={funtionname}>
-        <input type='date' value={valorPreD}>
-    </form>
-
-    const funtionname = (event) => {
-        event.preventDefault();
-    }
-
-
 --------------------Enviar informacion de hijo a padre-------------------
     Estructura
         app -> ejemploComponente -> componDeComp(devuelve un objeto!)
@@ -478,19 +468,34 @@ de que sus dependecias cambien
 
 
 Forms
-    Validation:
+    
+    const formFunction = (event) => { //funcion para handle el form
+        event.preventDefault();
+        
+    }
+    
+    const inputFunction = (event) => {
+        setDatos{ //es la func de state datos la cual save input value
+            ...datos,
+            [event.target.name] : event.target.value 
+        }
+    }
+
+    <form onSubmit={formFunction}>
+        <input 
+            type = 'date' 
+            name = 'nombre del input'
+            onChange = {inputFunction} //onChange me permite que cada vez que
+        >   //cambie el calor del input se ejecute la funcion
+    </form>
+
+   Validation:
     La validacion de los forms se puede hacer en tres areas:
 
     1era Cuando el formulario es enviado
     2nda Cuando el cliente ya ha escrito en el form pero todavia no 
          ha pulsado submit
     3era se puede validar por cada keystroke
-
-    //acceder al valor de un input
-        <input 
-            ref={nombreReferencia}
-
-
 
 --------------------------Creating a custome hook------------------------
 
@@ -505,3 +510,67 @@ Forms
 
     3ero llamamos el Hook
         useNomCustomHook();
+
+
+
+----------------------------React Routing-------------------------------
+
+    -install React Routing
+        npm install react-router-dom
+
+    -como funciona  
+        dominio.com/  -renderiza-> Componente A
+        dominio.com/productos  -renderiza-> Componente B
+
+    -Preparar index.js
+        import {BrowserRouter} form 'react-router-dom';
+
+        ReactDOM.render(
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>,
+            document.getElementById('root));
+
+    -añadir libreria en App
+        import {Route} from 'react-router-dom;
+
+    -añadir a los componentes a App
+        <Router path="/componenteNomURL"> //se activa cuando url es componenteNomURL
+            <ComponenteA> //activa el ComponenteA cuand se cumple 
+        <Route> 
+
+
+    -links
+        import { Link } from 'react-router-dom';
+
+       standar: <Link to='/nomComponente'> ir a nomComponente</Link>
+
+       para nav: <NavLink to='/...'
+                  activeClassName={estilo que se activa cuando active}>
+                    press hear
+                  </NavLink>
+
+
+    -dynamic Routing
+        <Route Path='/nombreComponente/:nomPlaceHolder'>
+            <NomComponent /> //where it should go if url changes 
+        </Route>
+
+    -Params
+        import Params from 'react-router-dom';
+
+        const params = useParams(); //llamamos el custom hook
+            //este se encarga de guardar el valor de nomPlaceHolder
+
+        console.log(params.nomPlaceHolder);
+
+    -Switch: nos permite ejecutar un subRoute sin necesidad de ejecutar
+             la ruta inicial
+
+        import {Switch} from 'react-router-dom';
+        
+        <Switch> //no overlap 
+            <Route path='..' exact/> //exact makes routing name exact
+            <Ruta2 />
+            <Ruta3 />
+        </Switch>
