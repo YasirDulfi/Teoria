@@ -521,6 +521,7 @@ Forms
     -como funciona  
         dominio.com/  -renderiza-> Componente A
         dominio.com/productos  -renderiza-> Componente B
+        dominio.com/productos/2342153 -renderiza-> producto 234...
 
     -Preparar index.js
         import {BrowserRouter} form 'react-router-dom';
@@ -531,6 +532,8 @@ Forms
             </BrowserRouter>,
             document.getElementById('root));
 
+
+
     -añadir libreria en App
         import {Route} from 'react-router-dom;
 
@@ -539,6 +542,9 @@ Forms
             <ComponenteA> //activa el ComponenteA cuand se cumple 
         <Route> 
 
+        <Route path='*'> //el * es pra cuando is not found page
+            <NotFoundPage />
+        </Route>
 
     -links
         import { Link } from 'react-router-dom';
@@ -551,10 +557,14 @@ Forms
                   </NavLink>
 
 
+
     -dynamic Routing
         <Route Path='/nombreComponente/:nomPlaceHolder'>
-            <NomComponent /> //where it should go if url changes 
+            <NomComponent /> //where it should go if url changes to nomPlaceHolder
         </Route>
+
+        <Link to={`/productos/${props.id}`}>
+
 
     -Params
         import Params from 'react-router-dom';
@@ -563,6 +573,8 @@ Forms
             //este se encarga de guardar el valor de nomPlaceHolder
 
         console.log(params.nomPlaceHolder);
+
+
 
     -Switch: nos permite ejecutar un subRoute sin necesidad de ejecutar
              la ruta inicial
@@ -574,3 +586,22 @@ Forms
             <Ruta2 />
             <Ruta3 />
         </Switch>
+
+    
+    -Programatic Navigation: sirve para cuando se quiera mover a otro url
+        desde un btn sin necesidad de la etiqueta link
+
+        import {useHistory} from 'react-route-dom';
+
+        const historial = useHistory();
+
+        history.push(); //lleva a un url con la opcion de volver a 0
+        history.replace(); //redirect a un url sin la opcion de volver a 0
+
+    
+    -Prompt: sirve para que al cambiar de ruta se ejecte cierta condicion
+
+        import {Prompt} from 'react-route-dom';
+
+        <Prompt when={condicion} message={(location)=>{aqui se escribe}}/>
+        //cuando condicion en URL se cumpla se muestra message 
