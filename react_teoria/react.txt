@@ -497,6 +497,24 @@ Forms
          ha pulsado submit
     3era se puede validar por cada keystroke
 
+   Formik + YUP + Semantic UI:
+
+    //installar e importar Semantic React
+        npm install semantic-ui-react semantic-ui-css
+
+        import {.....} from 'semantic-ui-css'
+
+    //instalar Formik
+        npm install Formik
+
+    //instalar YUP
+        npm install yup
+
+    
+
+
+
+
 --------------------------Creating a custome hook------------------------
 
     1ero creamos una carpuea en src que se llame HOOKS
