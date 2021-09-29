@@ -392,6 +392,14 @@ ex: {var && funcion() === 1 && <p>si var isset y funcion =1 se muestra p>}
         }
 
 
+    useHistory()
+    useLocation()
+    useRouteMatch()
+
+
+
+
+
 --------------------------useImperativeHandler--------------------------
 
 pd: React.forwardRef
@@ -555,7 +563,7 @@ Forms
     -añadir libreria en App
         import {Route} from 'react-router-dom;
 
-    -añadir a los componentes a App
+    -ROUTE
         <Router path="/componenteNomURL"> //se activa cuando url es componenteNomURL
             <ComponenteA> //activa el ComponenteA cuand se cumple 
         <Route> 
@@ -563,6 +571,9 @@ Forms
         <Route path='*'> //el * es pra cuando is not found page
             <NotFoundPage />
         </Route>
+
+      
+
 
     -links
         import { Link } from 'react-router-dom';
@@ -623,3 +634,34 @@ Forms
 
         <Prompt when={condicion} message={(location)=>{aqui se escribe}}/>
         //cuando condicion en URL se cumpla se muestra message 
+
+    
+    -Query parameters: son un conjunto de parametros(keys) los cuales les
+      corresponde un valor y qu se pasan por el url pero que no son a must
+
+        const nomFunction = (props) => {
+            const history = useHistory();
+            const location = useLocation(); //crea un obj que guarda URL
+
+            const queryParams = new URLSearchParams(location.search); 
+            // sirve para acceder al key y a su valor que tiene guardado
+                en la url
+
+            const cambiarURLHandler = () => {
+                history.push('/loQueAñadoAUrl=valor');
+            }
+        }
+
+
+    -Nesed Route: es poner un <Route /> en un componente en vez de 
+        en APP  
+
+        PD ademas podemos porner que el componente reciva subURL
+        dinamica con:
+        import {useRouteMatch} from 'react-route-dom';
+
+        const match = useRouteMatch(); //nos crea un obj que guarda el
+        path del actual url incluyendo el PlaceHolder
+
+    
+    -Enviar y recivir peticiones http con el subURL
