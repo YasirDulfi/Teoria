@@ -583,14 +583,59 @@ Forms
             )
 
 
+    
+
 
 
     -YUP: 
     //Preparar YUP
         npm install yup
 
-        import * as yup from "yump";
+        import * as Yup from "yump";
 
+    // crear carpeta
+        -Validation
+            +LogInValidation.js
+
+    //Crear un schema
+
+        export const loginSchema = Yup.object().shape({
+            name1: Yup.string().required,//name1 tiene que ser strng y must
+            name2: Yup.string().email().require(). //email
+            name3: Yup.string().min(4).max(10).require();
+        });
+
+
+    //en el componente donde esta el form
+
+        1ero:  ejecutamos una funcion al send un form
+
+        return (
+            <form onSubmit={sendUser}>
+                .............
+            </form>
+        );
+
+        2ndo: la funcion servira para llamar a el schema creado con yup
+              Comporobar su validez y enviarlo si todo es correcto
+
+            const sendUser = async (event) => {
+                event.preventDefault();
+
+                let formData = { //se crea un obj para despues ser enviado 
+                                 //para su validacion
+                    name1: event.target[0].value,
+                    name2: event.target[1].value,
+                    name3: event.target[2].value,
+                }
+
+                const comprobar = await loginSchema.isValid(formData);
+                //isValid es un metodo para validar segun loginSchema = 1o0
+
+                if(comprobar === true){
+                    .....
+                }
+            }; 
     
 
 
