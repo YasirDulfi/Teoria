@@ -505,18 +505,91 @@ Forms
          ha pulsado submit
     3era se puede validar por cada keystroke
 
-   Formik + YUP + Semantic UI:
+   Formik + YUP :
 
-    //installar e importar Semantic React
-        npm install semantic-ui-react semantic-ui-css
+    -Formik:
 
-        import {.....} from 'semantic-ui-css'
-
-    //instalar Formik
+    //preparar Formik
         npm install Formik
 
-    //instalar YUP
+        import {Formik} from 'formik';
+
+
+    //crear fomulario 
+        return(
+            <form>
+
+                <label htmlFor="Mail">Correo:</label>
+                <input name="mail" id="mail" type="email"> //IMPORTANTE el name
+
+                <button>Press Here!<button>
+
+            </form>
+        )
+
+    //inicializar formik
+        import {useFormik} from 'formik';
+
+        const formik = useFormik({ //se crea un objeto que contiene todos los names de los
+            initialValues: {       //input y us valores iniciales
+                Mail: "",
+            },                           
+        });
+
+
+    //añadir a los input
+        <input
+            value={formik.value.mail} //crea en una var un nuevo obj dentro de formik
+            onChange ={formik.handleChange} //handleChange es un prop dentro del obj Formik
+        >
+
+
+    //Handling form submittion
+
+        <form onSubmit={formik.handleSubmit}>  //accedo a la method dentro del obj formik
+        </form>
+
+        const formik = formik(
+                                {...Todos los name de los inpit y sus valores iniciales....},
+                                onSubmit: (values) => JSON.stringify(values));
+                                //onSubmit accede a los valor del input y ejecuta una funct
+
+
+
+    //form validation
+        const formik = formik ({
+            initialValues: {},
+            onSubmit: () => {},
+            validate: (values) => {
+                let error = {};
+
+                if(values.mail==""){
+
+                }
+
+                returrn error; //es obligatorio que formik.validate devuelva un obj
+            }
+        });
+
+
+
+    //error display
+        formik.errors.mail //error es un objeto dentro de formik que cambia a corde al input
+
+        //dentro de return
+
+            return(
+                {formik.errors.mail ? <div>{formik.error.mail}</div> : null}
+            )
+
+
+
+
+    -YUP: 
+    //Preparar YUP
         npm install yup
+
+        import * as yup from "yump";
 
     
 
