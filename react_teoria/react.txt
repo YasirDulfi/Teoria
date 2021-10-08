@@ -596,6 +596,45 @@ Forms
         <input name='perro' {...Formik.getFieldProps('perro')}>
 
 
+
+    //Formik component
+
+        1st: <Formik />
+            <Formik initialValues={initialValues} //lo que era antes el contenido del objeto 
+                validationSchema={validationSchema} //useFormik ahora se pasa como prop a 
+                onSubmit={onSubmit}                 //<Formik>
+            >
+                <form onSubmit={}>
+                    <input name="perro">
+                </form>
+            </Formik>
+
+
+        2nd: <Form />
+            <Formik>
+                <Form>
+                    ........ no hace falta onSubmit
+                </Form>
+            </ Formik>
+
+
+        3rd: <Field />
+            <Formik>
+                <Form>
+                    <Field name="perro" type="text"> //se quita input y se pone Field para
+                </Form>                              //asi quitar Formik.getFieldProps(...)
+            </Formk>
+
+
+        4th: <ErrorMessage />
+            <Formik>
+                <Form>
+                    <Field name="perro" type="password">
+                    <ErrorMessage name="perro" />
+                </Form>
+            </Formik>
+
+
     -YUP: 
     //Preparar YUP
         npm install yup
