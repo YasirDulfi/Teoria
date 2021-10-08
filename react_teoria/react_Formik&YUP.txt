@@ -1,0 +1,187 @@
+Formik + YUP :
+
+    -Formik:
+
+    //preparar Formik
+        npm install Formik
+
+        import {Formik} from 'formik';
+
+
+    //crear fomulario 
+        return(
+            <form>
+
+                <label htmlFor="Mail">Correo:</label>
+                <input name="mail" id="mail" type="email"> //IMPORTANTE el name
+
+                <button>Press Here!<button>
+
+            </form>
+        )
+
+    //inicializar formik
+        import {useFormik} from 'formik';
+
+        const formik = useFormik({ //se crea un objeto que contiene todos los names de los
+            initialValues: {       //input y us valores iniciales
+                Mail: "",
+            },                           
+        });
+
+
+    //añadir a los input
+        <input
+            value={formik.value.mail} //crea en una var un nuevo obj dentro de formik
+            onChange ={formik.handleChange} //handleChange es un prop dentro del obj Formik
+        >
+
+
+    //Handling input being touched
+        <input onBlur={formik.handleBlur}> // nos sirve para ejecutar una funcion cuando el 
+            //cliente haya pulsado el input
+
+
+    //Handling form submittion
+
+        <form onSubmit={formik.handleSubmit}>  //accedo a la method dentro del obj formik
+        </form>
+
+        const formik = formik(
+                                {...Todos los name de los inpit y sus valores iniciales....},
+                                onSubmit: (values) => JSON.stringify(values));
+                                //onSubmit accede a los valor del input y ejecuta una funct
+
+
+
+    //form validation
+        const formik = formik ({
+            initialValues: {},
+            onSubmit: () => {},
+            validate: (values) => {
+                let error = {};
+
+                if(values.mail==""){
+
+                }
+
+                returrn error; //es obligatorio que formik.validate devuelva un obj
+            }
+        });
+
+
+
+    //error display
+        formik.errors.mail //error es un objeto dentro de formik que cambia a corde al input
+
+        //dentro de return
+
+            return(
+                {formik.errors.mail ? <div>{formik.error.mail}</div> : null}
+            )
+
+
+    
+
+    //Refactorizar 
+        <input onBlur=... onChange=...> //en vez de escribir todos los on....
+                    por
+        <input name='perro' {...Formik.getFieldProps('perro')}>
+
+
+
+    //Formik component
+
+        1st: <Formik />
+            <Formik initialValues={initialValues} //lo que era antes el contenido del objeto 
+                validationSchema={validationSchema} //useFormik ahora se pasa como prop a 
+                onSubmit={onSubmit}                 //<Formik>
+            >
+                <form onSubmit={}>
+                    <input name="perro">
+                </form>
+            </Formik>
+
+
+        2nd: <Form />
+            <Formik>
+                <Form>
+                    ........ no hace falta onSubmit
+                </Form>
+            </ Formik>
+
+
+        3rd: <Field />
+            <Formik>
+                <Form>
+                    <Field name="perro" type="text"> //se quita input y se pone Field para
+                </Form>                              //asi quitar Formik.getFieldProps(...)
+            </Formk>
+
+
+        4th: <ErrorMessage />
+            <Formik>
+                <Form>
+                    <Field name="perro" type="password">
+                    <ErrorMessage name="perro" />
+                </Form>
+            </Formik>
+
+
+    -YUP: 
+    //Preparar YUP
+        npm install yup
+
+        import * as Yup from "yump";
+
+    // crear carpeta
+        -Validation
+            +LogInValidation.js
+
+    //Crear un schema
+
+        export const vakidationSchema = Yup.object().shape({
+            name1: Yup.string().required,//name1 tiene que ser strng y must
+            name2: Yup.string().email().require('mensaje error'). //email
+            name3: Yup.string().min(4).max(10).require();
+        });
+
+    //añadimos al objeto formik el schema 
+        const formik = useFormik({
+            initialValues,
+            onSubmit,
+            validationSchema
+        })
+
+    //en el componente donde esta el form
+
+        1ero:  ejecutamos una funcion al send un form
+
+        return (
+            <form onSubmit={sendUser}>
+                .............
+            </form>
+        );
+
+        2ndo: la funcion servira para llamar a el schema creado con yup
+              Comporobar su validez y enviarlo si todo es correcto
+
+            const sendUser = async (event) => {
+                event.preventDefault();
+
+                let formData = { //se crea un obj para despues ser enviado 
+                                 //para su validacion
+                    name1: event.target[0].value,
+                    name2: event.target[1].value,
+                    name3: event.target[2].value,
+                }
+
+                const comprobar = await loginSchema.isValid(formData);
+                //isValid es un metodo para validar segun loginSchema = 1o0
+
+                if(comprobar === true){
+                    .....
+                }
+            }; 
+    
+    
