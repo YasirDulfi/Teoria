@@ -544,6 +544,11 @@ Forms
         >
 
 
+    //Handling input being touched
+        <input onBlur={formik.handleBlur}> // nos sirve para ejecutar una funcion cuando el 
+            //cliente haya pulsado el input
+
+
     //Handling form submittion
 
         <form onSubmit={formik.handleSubmit}>  //accedo a la method dentro del obj formik
@@ -585,6 +590,10 @@ Forms
 
     
 
+    //Refactorizar 
+        <input onBlur=... onChange=...> //en vez de escribir todos los on....
+                    por
+        <input name='perro' {...Formik.getFieldProps('perro')}>
 
 
     -YUP: 
@@ -599,12 +608,18 @@ Forms
 
     //Crear un schema
 
-        export const loginSchema = Yup.object().shape({
+        export const vakidationSchema = Yup.object().shape({
             name1: Yup.string().required,//name1 tiene que ser strng y must
-            name2: Yup.string().email().require(). //email
+            name2: Yup.string().email().require('mensaje error'). //email
             name3: Yup.string().min(4).max(10).require();
         });
 
+    //añadimos al objeto formik el schema 
+        const formik = useFormik({
+            initialValues,
+            onSubmit,
+            validationSchema
+        })
 
     //en el componente donde esta el form
 
@@ -637,7 +652,7 @@ Forms
                 }
             }; 
     
-
+    
 
 
 
