@@ -1,0 +1,18 @@
+//Instalacion 
+    npm install @material-ui/core
+
+//Add button to the project
+    import Button fromm '@material-ui/core/Button';
+
+    return(
+        <Button 
+            variant="contained" //como se presenta el boton si solo lineas o solo texto
+            color="primary" 
+            size="small"
+            disabled //no se puede clickar
+            href="#"
+            >
+            Contenido
+        </Button>
+    )
+
