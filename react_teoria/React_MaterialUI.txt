@@ -1,8 +1,10 @@
 //Instalacion 
     npm install @material-ui/core
+    npm install @material-ui/icon
 
 //Add button to the project
     import Button fromm '@material-ui/core/Button';
+
 
     return(
         <Button 
@@ -16,3 +18,100 @@
         </Button>
     )
 
+
+//Add button group
+    import ButtonGroup from '@material-ui/core/ButtonGroup';
+
+    <ButtonGroup variant="contained">
+        <Button></Button>
+        <Button></Button>
+    </ButtonGroup>
+
+
+//Add icon 
+    import SaveIcon from '@material-ui/icons/Save'; //Add an icon form material-ui
+
+    <Button 
+        startIcon={<SaveIcon />} //start icon sirve para introducir un icono en el boton
+
+    >
+        Press Here!
+    </Button>    
+
+    
+//Add checkBox
+    import CheckBox from '@material-ui/core/Checkbox';
+
+    <checkBox 
+        checked={checkState} //un state que es accionado cuando es checked or not
+        onChange={(event)=>FunctionCheckState(event.target.checked)} //llamamos a la funcion 
+            //que gestiona el state para se cambie dependiendo del valor de event.target.checked
+    />
+
+    //Add lable to checkBox with <FormControlLabel>
+        <FormControlLabel 
+            control{<CheckBox checked={checked}/>} //esto es a lo que le
+            label="Este es el texto que aparecera" //añadimos el lable
+        >
+
+//Add a text input style
+    import TextField from '@material-ui/core/TextField';
+
+    <TextField 
+        variant="outlined"
+        color="secondary"
+        type="date"
+        label="Este es el mensaje que se muestra"
+        placeholder="es es el mensaje que se borra"
+    />
+
+
+//Custome a component from Material UI
+    import {makeStyles} from 'material-ui/core/styles';
+
+    const useStyles = makeStyles({ //esto es un obj que contiene los 
+        root: {                    //styles 
+            margin: 0,
+            color: white,
+            padding: 10px,
+        }
+    });
+
+    const ButtonStyled = () => {
+        const classes = useStyles(); //apuntamos a los styles
+        return <Button className={classes.root}></Button> 
+        //accedemos a un 
+    }
+
+    y despues:
+        return(
+            <ButtonStyled />
+        )
+
+
+//Add a themme to the page
+
+    1st create a Material UI theme
+        import {createMuiTheme} from 'material-ui/core/styles';
+        import { green, red, yellow} from 'material-ui/core/colors';
+
+        const themeObject = createMuiTheme({
+            palette: {
+                primary: {
+                    main: red[500],
+                }
+                secondary:{
+                    main: green[500],
+                }
+            }
+        })
+
+    2nd execute the theme
+        import {ThemeProvider} from '@material-ui/core/styles';
+
+        return(
+            <ThemeProvider theme={themeObject}> 
+                <div>
+                </div>
+            </ThemeProvider>
+        )
