@@ -65,7 +65,18 @@
         placeholder="es es el mensaje que se borra"
     />
 
+//Navbar
+    import {AppBar, Toolbar} from '@material-ui/core';
 
+    <AppBar>
+        <Toolbar>
+            
+        </Toolbar>
+    </AppBar>
+
+
+
+ 
 //Custome a component from Material UI
     import {makeStyles} from 'material-ui/core/styles';
 
@@ -133,3 +144,42 @@
             Este es el texto al que se le cambia la letra
         </Typography>
     </div>
+
+
+    //use themes to style your Typography
+
+        const theme = createMuiTheme({
+            typography: {
+                h2 {
+                    fontSize: 10px
+                }
+            }, ...
+        })
+
+
+
+//Contenedor 
+    import Container from '@material-ui/core/Container';
+
+    return(
+        <Container>
+            <div>
+            </div>
+        </Container>
+    )
+
+//Grid
+    import {Box, Grid} from '@material-ui/core';
+
+    //Material ui divide el grid container en 12 partes y tu con xs  
+    //determinas cuantas partes conge el grid item 
+
+    <Grid container>
+        <Grid items xs={12} sm={6} md={3} lg={1}>
+        //xs = extraSmall sm= small y asi hasta large y dependiendo de 
+        //que tan grande sea la pantalla 
+            <Box border={2}>
+
+            </Box>
+        </Grid>
+    </Grid>
