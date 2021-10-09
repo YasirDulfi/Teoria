@@ -115,3 +115,21 @@
                 </div>
             </ThemeProvider>
         )
+
+
+
+
+//Add a font 
+    npm install font source-roboto 
+    
+    import 'fontsource-roboto'; //añado el font al project
+
+    import Typography from '@material-ui/core/Typography'
+
+    <div>
+        <Typography 
+            variant="h2" 
+        >
+            Este es el texto al que se le cambia la letra
+        </Typography>
+    </div>
