@@ -1,0 +1,28 @@
+-------------------------------------------------------------------------
+-----------------------------Clean Code----------------------------------
+-------------------------------------------------------------------------
+
+    1ero Reglas para escribir nombres de variables
+        -El nombre debe de ser descriptivo de su funcion
+        -No se pueden utilizar numero
+        -No se pueden utilizar abreviaciones 
+        -Debe de ser descriptivo pero no la biblia jajaja
+
+
+
+
+
+
+
+
+
+
+    Reglas para JAVASCRIPT
+
+        Condiciones: variable = a > b ? 'verdad' : 'falso';
+
+        Export variables:
+
+        export const x, y, z; ->Good  export const x;
+                                      export const y;
+                                      export const z;
