@@ -68,14 +68,18 @@
 //Navbar
     import {AppBar, Toolbar} from '@material-ui/core';
 
-    <AppBar>
+    <AppBar position="stiky" elevation={0} //shadow >
         <Toolbar>
-            
+            ...contenido................
         </Toolbar>
     </AppBar>
 
 
-
+    //estilos para Navbar
+        const useStyles = makeStyles((theme) => {
+            offset: theme.mixins.toolbar //nos permite hacer responsive el 
+        })                               //Navbar
+        
  
 //Custome a component from Material UI
     import {makeStyles} from 'material-ui/core/styles';

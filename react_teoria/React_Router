@@ -1,0 +1,127 @@
+
+----------------------------React Routing-------------------------------
+
+    -install React Routing
+        npm install react-router-dom
+
+    -como funciona  
+        dominio.com/  -renderiza-> Componente A
+        dominio.com/productos  -renderiza-> Componente B
+        dominio.com/productos/2342153 -renderiza-> producto 234...
+
+    -Preparar index.js
+        import {BrowserRouter} form 'react-router-dom';
+
+        ReactDOM.render(
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>,
+            document.getElementById('root));
+
+
+
+    -añadir libreria en App
+        import {Route} from 'react-router-dom;
+
+    -ROUTE
+        <Router path="/componenteNomURL"> //se activa cuando url es componenteNomURL
+            <ComponenteA> //activa el ComponenteA cuand se cumple 
+        <Route> 
+
+        <Route path='*'> //el * es pra cuando is not found page
+            <NotFoundPage />
+        </Route>
+
+      
+
+
+    -links
+        import { Link } from 'react-router-dom';
+
+       standar: <Link to='/nomComponente'> ir a nomComponente</Link>
+
+       para nav: <NavLink to='/...'
+                  activeClassName={estilo que se activa cuando active}>
+                    press hear
+                  </NavLink>
+
+
+
+    -dynamic Routing
+        <Route Path='/nombreComponente/:nomPlaceHolder'>
+            <NomComponent /> //where it should go if url changes to nomPlaceHolder
+        </Route>
+
+        <Link to={`/productos/${props.id}`}>
+
+
+    -Params
+        import Params from 'react-router-dom';
+
+        const params = useParams(); //llamamos el custom hook
+            //este se encarga de guardar el valor de nomPlaceHolder
+
+        console.log(params.nomPlaceHolder);
+
+
+
+    -Switch: nos permite ejecutar un subRoute sin necesidad de ejecutar
+             la ruta inicial
+
+        import {Switch} from 'react-router-dom';
+        
+        <Switch> //no overlap 
+            <Route path='..' exact/> //exact makes routing name exact
+            <Ruta2 />
+            <Ruta3 />
+        </Switch>
+
+    
+    -Programatic Navigation: sirve para cuando se quiera mover a otro url
+        desde un btn sin necesidad de la etiqueta link
+
+        import {useHistory} from 'react-route-dom';
+
+        const historial = useHistory();
+
+        history.push(); //lleva a un url con la opcion de volver a 0
+        history.replace(); //redirect a un url sin la opcion de volver a 0
+
+    
+    -Prompt: sirve para que al cambiar de ruta se ejecte cierta condicion
+
+        import {Prompt} from 'react-route-dom';
+
+        <Prompt when={condicion} message={(location)=>{aqui se escribe}}/>
+        //cuando condicion en URL se cumpla se muestra message 
+
+    
+    -Query parameters: son un conjunto de parametros(keys) los cuales les
+      corresponde un valor y qu se pasan por el url pero que no son a must
+
+        const nomFunction = (props) => {
+            const history = useHistory();
+            const location = useLocation(); //crea un obj que guarda URL
+
+            const queryParams = new URLSearchParams(location.search); 
+            // sirve para acceder al key y a su valor que tiene guardado
+                en la url
+
+            const cambiarURLHandler = () => {
+                history.push('/loQueAñadoAUrl=valor');
+            }
+        }
+
+
+    -Nesed Route: es poner un <Route /> en un componente en vez de 
+        en APP  
+
+        PD ademas podemos porner que el componente reciva subURL
+        dinamica con:
+        import {useRouteMatch} from 'react-route-dom';
+
+        const match = useRouteMatch(); //nos crea un obj que guarda el
+        path del actual url incluyendo el PlaceHolder
+
+    
+    -Enviar y recivir peticiones http con el subURL
