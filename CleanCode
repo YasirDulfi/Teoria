@@ -5,24 +5,55 @@
     1ero Reglas para escribir nombres de variables
         -El nombre debe de ser descriptivo de su funcion
         -No se pueden utilizar numero
-        -No se pueden utilizar abreviaciones 
+        -No se pueden utilizar abreviaciones ni tener una sola letra
         -Debe de ser descriptivo pero no la biblia jajaja
 
 
+    2ndo Registra los numeros en variables
+        - const DAYS_IN_WEEK = 7; en vez de utilizar solo 7
 
 
+    3ero Funciones 
+        -Las funciones deben una sola funcion especifica
+        -En caso de que sea muy larga se divide en diferente subfunciones
 
+    4to evita Code repetition PD: use Destructuring 
 
-
+    5to Las clases empiezan en mayuscula y tienen que intentar ser nouns
 
 
 
     Reglas para JAVASCRIPT
 
-        Condiciones: variable = a > b ? 'verdad' : 'falso';
+        -Numeros 
+            + 6e2 -> Good  600->bad
+            
 
-        Export variables:
+        -Export variables:
 
-        export const x, y, z; ->Good  export const x;
-                                      export const y;
-                                      export const z;
+            export const x, y, z; ->Good  export const x;
+                                          export const y;
+                                          export const z;
+
+        
+        -Aprende a utilizar Destructuring
+
+            +Declarando y asignando una variable con objetos
+                const {['x']:a, ['y']:b} = foo; -> Good
+                const a = foo.x, b = foo.y; -> bad
+
+            +Declarando y asignando una variable con arrays
+                let [a, b] = foo; -> Good
+                let a = foo[0], b = foo[1]; ->bad
+
+            
+
+    Condiciones:
+
+        variable = a > b ? 'verdad' : 'falso';
+
+        -Aprende a utilizar los operadores logicos
+            X && esVerdad(); -> Good
+            if (X){
+                esVerdad();
+            }
