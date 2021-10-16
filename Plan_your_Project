@@ -3,10 +3,13 @@
 
 -Cuales son tus objetivos con la pagina web?
 
--Cuales son tus core funtionality y los requirements?
+-Cuales son tus core functional requirements?
+    PD: 1ero van los need functionalitys los core y despues otros
 
 -Crea un diseño (phigma)
 
+-Que stack vas a utilizar?
+
 -Create a timeline
 
--
+-Unit test desde el inicio

@@ -52,8 +52,30 @@
 
         variable = a > b ? 'verdad' : 'falso';
 
+        variable = a > b; si se cumple la condicion es 1 sino 0
+
         -Aprende a utilizar los operadores logicos
             X && esVerdad(); -> Good
             if (X){
                 esVerdad();
             }
+
+            X || siNoSeCumple(); -> Good
+            if(X){
+
+            } else {
+                siNoSeCumple();
+            }
+
+        -Aprende a poner la condicion en una variable descrriptiva 
+            y si esta se cumple se eejecuta algo
+
+            const puedoComer = (tengoHambre == 1 && tengoComida == 1)&&...;
+             
+            if(puedoComer) {
+                ejecutar
+            }
+
+    Funciones:
+        -Aprende a usar metodos envez de hacerlo por tu cuenta
+            pd: se pueden utilizar dos metodos a la vez
